@@ -53,7 +53,7 @@
 <body class="text-stone-800 antialiased flex items-start justify-center p-4">
   <button id="musicBtn" type="button" aria-pressed="false"
     class="fixed top-3 right-3 z-20 rounded-full bg-amber-900/85 text-amber-50 text-xs font-semibold px-3.5 py-2.5 shadow-md backdrop-blur cursor-pointer">♪ ನಾದ</button>
-  <div id="langSwitch" class="fixed top-3 left-3 z-20 flex gap-0.5 rounded-full bg-amber-900/85 p-1 shadow-md backdrop-blur text-xs font-semibold" role="group" aria-label="Language">
+  <div id="langSwitch" class="absolute top-3 left-3 z-20 flex gap-0.5 rounded-full bg-amber-900/85 p-1 shadow-md backdrop-blur text-xs font-semibold" role="group" aria-label="Language">
     <button type="button" data-lang="kn" class="lang-btn rounded-full px-3 py-1.5 cursor-pointer" aria-pressed="false">ಕನ್ನಡ</button>
     <button type="button" data-lang="en" class="lang-btn rounded-full px-3 py-1.5 cursor-pointer" aria-pressed="false">English</button>
   </div>
@@ -2287,20 +2287,20 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
         guru: '॥ śrī gurubhyo namaḥ ॥',
         mantra: '॥ ṣaṭ-śataika-viṃśat-sahasra-śvāsa-rūpa-haṃsa-mantra-japa-prerakāya namaḥ ॥',
         mantraA: '॥ ṣaṭ-śataika-viṃśat-sahasra-', mantraB: 'śvāsa-rūpa-haṃsa-mantra-japa-prerakāya namaḥ ॥',
-        title: 'Shwasa Japa Samarpane', subtitle: '(Breath-Japa Counter)',
-        tagline: 'Inspired by Vāyudeva, 21,600 breath-mantra japas every day',
+        title: 'Shwasa Japa Samarpane', subtitle: '(Shwasa Japa Counter)',
+        tagline: 'Inspired by Vāyudeva, 21,600 Shwasa Japas every day',
         hksOpen: '▶ Listen: Harikathāmṛtasāra', family: 'Family members',
         name: 'Name', namePh: 'e.g. Father, Mother, Me',
         dob: 'Date of birth', tob: 'Time of birth', optional: 'Optional',
         tobHint: 'Without a time, the count runs up to the start of today. With a time, it is exact to this very moment.',
         calc: 'Save & calculate', del: 'Delete', delSure: 'Sure?', bigText: 'Large text',
         nowTime: 'Now:', per4: '1 breath every 4 seconds',
-        totalLabel: 'Total breath-japa so far', totalDays: 'Days lived', todayJapa: 'Today’s japa (since sunrise)',
+        totalLabel: 'Total Shwasa Japa so far', totalDays: 'Days lived', todayJapa: 'Today’s japa (since sunrise)',
         samHead: '॥ Offering to Śrī Hari ॥',
         sam1a: 'With Mukhyaprāṇa (Vāyu) dwelling within me as the inner controller, I offer to Śrī Hari the ',
-        sam1b: ' breath-japas He causes me to perform from today’s sunrise to tomorrow’s sunrise.',
+        sam1b: ' Shwasa Japas He causes me to perform from today’s sunrise to tomorrow’s sunrise.',
         sam2a: 'With Mukhyaprāṇa (Vāyu) dwelling within me as the inner controller, I offer to Śrī Hari the ',
-        sam2b: ' breath-japas He has caused me to perform from my birth until now.',
+        sam2b: ' Shwasa Japas He has caused me to perform from my birth until now.',
         msHead: '॥ Coming milestones ॥',
         sunrise: 'sunrise:', nextSunrise: 'Next sunrise:', pctA: '', pctB: '% of today’s 21,600 done',
         changeTown: 'Change place', latPh: 'Latitude', lonPh: 'Longitude',
@@ -2313,8 +2313,8 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
         creditVenu: 'Background chant: Venugopal Khatavkar (Daasoham) — with thanks',
         creditHks: 'Harikathāmṛtasāra sung by Smt. Divya Giridhar and Sri Anantaraj Mistri — with thanks',
         singers: 'Sung by Smt. Divya Giridhar and Sri Anantaraj Mistri',
-        hksBy: '॥ Śrī Jagannātha Dāsa ॥', hksTitle: 'Harikathāmṛtasāra', hksSub: 'The glory of the breath-japa performed by Vāyudeva',
-        padya: (n) => 'Verse ' + n, kala: 'Time', japaCol: 'Breath-japa',
+        hksBy: '॥ Śrī Jagannātha Dāsa ॥', hksTitle: 'Harikathāmṛtasāra', hksSub: 'The glory of the Shwasa Japa performed by Vāyudeva',
+        padya: (n) => 'Verse ' + n, kala: 'Time', japaCol: 'Shwasa Japa',
         breathNote: ['* Based on the standard measure of 15 breaths a minute.', 'Actual breathing varies from person to person.'],
         pause: '❚❚ Pause', play: '▶ Play', again: '▶ Play again', restart: 'From start', closeX: '✕ Close',
         sunToSun: ', sunrise to sunrise',
@@ -2331,12 +2331,12 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
         noteGeneral: '* From the date of birth to the start of today (full days × 21,600). Add a birth time for an exact count up to this moment.',
         bengaluru: 'Bengaluru', tomorrow: ' (tomorrow)', today: ' (today)', ham: 'haṃ', sah: 'saḥ', crore: ' crore', lakh: ' lakh',
         months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-        shSub: '(Breath-japa counter — 21,600 breath-japas a day)', shName: 'Name: ', shTotal: 'Total breath-japa: ', shDays: 'Days lived: ',
+        shSub: '(Shwasa Japa counter — 21,600 Shwasa Japas a day)', shName: 'Name: ', shTotal: 'Total Shwasa Japa: ', shDays: 'Days lived: ',
         shToday: (c) => 'Today’s japa (since sunrise, ' + c + '): ',
         shSource: '— Śrī Jagannātha Dāsa, Harikathāmṛtasāra',
-        shInvite: '🙏 Find your own breath-japa count and offer it to Śrī Hari:',
+        shInvite: '🙏 Find your own Shwasa Japa count and offer it to Śrī Hari:',
         shReply: 'Reply to this message for the ‘Shwasa Japa Samarpane’ link.',
-        caption: '॥ Shwasa Japa Samarpane ॥\nFind your own breath-japa count and offer it to Śrī Hari 🙏',
+        caption: '॥ Shwasa Japa Samarpane ॥\nFind your own Shwasa Japa count and offer it to Śrī Hari 🙏',
         copied: 'Offering details copied!', copyFail: 'Could not copy.',
         imgMaking: 'Making image…', imgSaved: 'Image saved! (see Gallery / Downloads)',
         declined: 'Saving was cancelled.', rateLim: 'Please try again in a moment.',
@@ -2347,12 +2347,12 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
         vidNoSave: 'The video is ready below, but saving is not allowed here — open the link in Chrome and try again.',
         vidFail: 'Could not make a video on this phone. Please use the image.',
         nadaFail: 'Could not load the chant.', nada: '♪ Chant', nadaStop: '♪ Stop chant',
-        invite1: 'Find your own breath-japa count and offer it to Śrī Hari',
+        invite1: 'Find your own Shwasa Japa count and offer it to Śrī Hari',
         invite2: 'Reply to this status for the ‘Shwasa Japa Samarpane’ link',
         imgFooter: '24 hours = 21,600 breaths',
         hksCard: '॥ Śrī Jagannātha Dāsa — Harikathāmṛtasāra ॥',
-        tableTop: '॥ As taught in Śrī Jagannātha Dāsa’s Harikathāmṛtasāra ॥', tableTitle: 'Breath-japa conducted by Vāyudeva',
-        big1: 'Find your own', big2: 'breath-japa count', big3: 'and offer it to Śrī Hari',
+        tableTop: '॥ As taught in Śrī Jagannātha Dāsa’s Harikathāmṛtasāra ॥', tableTitle: 'Shwasa Japa conducted by Vāyudeva',
+        big1: 'Find your own', big2: 'Shwasa Japa count', big3: 'and offer it to Śrī Hari',
         appName: '‘Shwasa Japa Samarpane’', replyStatus: 'Reply to this status for the link',
         meaningHead: 'Meaning (gist)'
       }
@@ -2375,7 +2375,7 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
     const HKS_MEANING = {
       kn: ['', '', '', ''],
       en: [
-        'Vāyu, the Lord of Bhāratī, dwelling in all beings without weariness, performs 360 breath-japas in every ghaḷige. The compassionate, all-knowing giver of every good fulfils each soul’s sādhanā and leads it to earth, heaven or hell accordingly.',
+        'Vāyu, the Lord of Bhāratī, dwelling in all beings without weariness, performs 360 Shwasa Japas in every ghaḷige. The compassionate, all-knowing giver of every good fulfils each soul’s sādhanā and leads it to earth, heaven or hell accordingly.',
         'Conducting 900 breaths in and out every hour, ever awake day and night within the multitude of beings, this foremost of the gods sustains them effortlessly — abiding unseen at the root of the lotus feet of the Primal Lord, Śrī Hari.',
         'Know that in one yāma there are 2,700 breaths; in two, 5,400; in three yāmas, 8,100; and in twelve hours, 10,800.',
         'In one day Vāyu, by Mukunda’s command, performs and causes 21,600 japas and protects all the worlds — praise Pavana thus, never forgetting this glory. Do even Indra and the other gods have such greatness at any time?'
@@ -3657,7 +3657,7 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
     if (EN) $('mantraLine').textContent = T('mantra');   // Kannada keeps its line break after ವಿಂಶತ್
     $('hksNote').textContent = T('breathNote').join(' ');
     musicBtn.textContent = pluckTimer ? T('nadaStop') : T('nada');
-    if (EN) { document.body.style.fontFamily = "'Inter', 'Noto Sans Kannada', sans-serif"; document.title = 'Shwasa Japa Samarpane — Breath-Japa Offering'; }
+    if (EN) { document.body.style.fontFamily = "'Inter', 'Noto Sans Kannada', sans-serif"; document.title = 'Shwasa Japa Samarpane'; }
     document.querySelectorAll('#langSwitch .lang-btn').forEach((b) => {
       b.setAttribute('aria-pressed', String(b.dataset.lang === LANG));
       b.addEventListener('click', () => {
