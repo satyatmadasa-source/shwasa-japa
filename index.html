@@ -207,6 +207,10 @@
           ವಿಡಿಯೋ (ನಾದ ಸಹಿತ) ಶೇರ್ / ಡೌನ್‌ಲೋಡ್
         </button>
         <div id="videoProgress" class="hidden h-2 rounded-full bg-white/15 overflow-hidden"><div id="videoBar" class="h-full bg-amber-300 rounded-full" style="width:0%"></div></div>
+        <div id="videoReady" class="hidden grid grid-cols-2 gap-2">
+          <button id="videoShareBtn" type="button" class="rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 text-sm cursor-pointer">ವಿಡಿಯೋ ಶೇರ್ ಮಾಡಿ</button>
+          <button id="videoSaveBtn" type="button" class="rounded-xl border border-amber-400 text-amber-100 font-semibold py-3 text-sm cursor-pointer">ಡೌನ್‌ಲೋಡ್</button>
+        </div>
         <video id="previewVideo" class="hidden w-full rounded-xl" controls playsinline></video>
         <a id="whatsappBtn" href="https://api.whatsapp.com/send" target="_blank" rel="noopener noreferrer"
           class="w-full flex items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-3 text-sm shadow-sm transition no-underline">
@@ -3289,13 +3293,25 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
       return { blob: new Blob(chunks, { type: mime.split(';')[0] }), ext };
     }
 
-    let videoUrl = null;
+    let videoUrl = null, readyVideo = null;
+    $('videoShareBtn').addEventListener('click', async () => {
+      if (!readyVideo) return;
+      try { await navigator.share({ files: [readyVideo.file], title: 'ಶ್ವಾಸ ಜಪ ಸಮರ್ಪಣೆ' }); }
+      catch (e) {
+        if (e && e.name === 'AbortError') return;
+        if (directDownload(readyVideo.blob, readyVideo.fname)) showToast('ಶೇರ್ ಆಗಲಿಲ್ಲ — ವಿಡಿಯೋ ಡೌನ್‌ಲೋಡ್ ಆಯಿತು.');
+      }
+    });
+    $('videoSaveBtn').addEventListener('click', () => {
+      if (readyVideo && directDownload(readyVideo.blob, readyVideo.fname)) showToast('ವಿಡಿಯೋ ಡೌನ್‌ಲೋಡ್ ಆಯಿತು.');
+    });
     el.shareVideoBtn.addEventListener('click', async () => {
       if (!render()) return;
       const label = el.shareVideoBtn.textContent;
       el.shareVideoBtn.disabled = true; el.shareVideoBtn.textContent = 'ವಿಡಿಯೋ ತಯಾರಾಗುತ್ತಿದೆ…';
       el.videoProgress.classList.remove('hidden'); el.videoBar.style.width = '0%';
       el.previewVideo.classList.add('hidden');
+      $('videoReady').classList.add('hidden'); readyVideo = null;
       try {
         let out;
         try { out = await encodeVideoWebCodecs(); }
@@ -3314,9 +3330,14 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
           }
         }
         const file = new File([blob], fname, { type: blob.type });
+        // Sharing needs a fresh tap, and making the video takes longer than the browser allows after
+        // the first tap. So when sharing is possible, show a "share" button for a second tap.
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try { await navigator.share({ files: [file], title: 'ಶ್ವಾಸ ಜಪ ಸಮರ್ಪಣೆ' }); return; }
-          catch (e) { if (e && e.name === 'AbortError') return; }
+          readyVideo = { blob, fname, file };
+          $('videoReady').classList.remove('hidden');
+          showToast('ವಿಡಿಯೋ ಸಿದ್ಧ! "ವಿಡಿಯೋ ಶೇರ್ ಮಾಡಿ" ಒತ್ತಿ WhatsApp Status ಗೆ ಹಾಕಿ.');
+          $('videoReady').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
         }
         if (directDownload(blob, fname)) { showToast('ವಿಡಿಯೋ ಡೌನ್‌ಲೋಡ್ ಆಯಿತು.'); return; }
         showToast('ವಿಡಿಯೋ ಕೆಳಗೆ ಸಿದ್ಧವಿದೆ. ಉಳಿಸಲು ಇಲ್ಲಿ ಅನುಮತಿ ಸಿಗಲಿಲ್ಲ — ಲಿಂಕ್ ಅನ್ನು Chrome ನಲ್ಲಿ ತೆರೆದು ಪ್ರಯತ್ನಿಸಿ.');
