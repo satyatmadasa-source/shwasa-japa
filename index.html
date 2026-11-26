@@ -2197,6 +2197,10 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
     // when the page runs as a normal website (not inside Claude), use its own address as the share link
     const STANDALONE = (() => { try { return window.self === window.top && /^https?:/.test(location.protocol); } catch (e) { return false; } })();
     const SHARE_LINK = APP_LINK || (STANDALONE ? location.origin + location.pathname : '');
+    // short caption sent along with the image / video (WhatsApp uses it as the caption; the link stays tappable)
+    function shortShareText() {
+      return '॥ ಶ್ವಾಸ ಜಪ ಸಮರ್ಪಣೆ ॥\nನೀವೂ ನಿಮ್ಮ ಶ್ವಾಸ ಜಪದ ಲೆಕ್ಕ ತಿಳಿದು ಶ್ರೀಹರಿಗೆ ಸಮರ್ಪಿಸಿ 🙏' + (SHARE_LINK ? '\n' + SHARE_LINK : '');
+    }
     function directDownload(blob, fname) {
       if (!STANDALONE) return false;
       try {
@@ -2732,7 +2736,7 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
         }
         const file = new File([blob], fname, { type: 'image/png' });
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try { await navigator.share({ files: [file], title: 'ಶ್ವಾಸ ಜಪ ಸಮರ್ಪಣೆ' }); return; }
+          try { await navigator.share({ files: [file], title: 'ಶ್ವಾಸ ಜಪ ಸಮರ್ಪಣೆ', text: shortShareText() }); return; }
           catch (e) { if (e && e.name === 'AbortError') return; }
         }
         if (directDownload(blob, fname)) { showToast('ಚಿತ್ರ ಡೌನ್‌ಲೋಡ್ ಆಯಿತು.'); return; }
@@ -3296,7 +3300,7 @@ if (typeof module === "object" && typeof module.exports === "object") Object.ass
     let videoUrl = null, readyVideo = null;
     $('videoShareBtn').addEventListener('click', async () => {
       if (!readyVideo) return;
-      try { await navigator.share({ files: [readyVideo.file], title: 'ಶ್ವಾಸ ಜಪ ಸಮರ್ಪಣೆ' }); }
+      try { await navigator.share({ files: [readyVideo.file], title: 'ಶ್ವಾಸ ಜಪ ಸಮರ್ಪಣೆ', text: shortShareText() }); }
       catch (e) {
         if (e && e.name === 'AbortError') return;
         if (directDownload(readyVideo.blob, readyVideo.fname)) showToast('ಶೇರ್ ಆಗಲಿಲ್ಲ — ವಿಡಿಯೋ ಡೌನ್‌ಲೋಡ್ ಆಯಿತು.');
